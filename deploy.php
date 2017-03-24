@@ -8,7 +8,7 @@ require "./event.php";
 // We should be getting updates from the right agent
 $event = new WebUpdateEvent($_POST);
 
-$event->ValidateSignature($config["deploy"]["secret"]);
+// $event->ValidateSignature($config["deploy"]["secret"]);
 
 require "./lib/git-php/Git.php";
 
@@ -20,7 +20,8 @@ chdir($config["deploy"]["path"]);
 $repo = Git::open(".");
 
 function format_git($repo, $cmd){
-  print "<pre>" . htmlspecialchars($repo->run($cmd)) . "</pre>";
+  print "<pre>'git ". $cmd ."':". PHP_EOL;
+  print htmlspecialchars($repo->run($cmd)) . "</pre>";
 }
 
 format_git($repo, "status");
