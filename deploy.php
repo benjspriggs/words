@@ -8,6 +8,7 @@ require "./event.php";
 // We should be getting updates from the right agent
 $event = new WebUpdateEvent($_POST);
 
+// TODO: COMMENT
 // $event->ValidateSignature($config["deploy"]["secret"]);
 
 require "./lib/git-php/Git.php";
