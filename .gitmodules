@@ -4,3 +4,6 @@
 [submodule "lib/spyc"]
 	path = lib/spyc
 	url = https://github.com/mustangostang/spyc.git
+[submodule "lib/git-php"]
+	path = lib/git-php
+	url = https://github.com/kbjr/Git.php.git
