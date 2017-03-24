@@ -1,21 +1,25 @@
 <?php
 
+chdir("..");
+
 require "./config.php";
 require "./event.php";
 
 // We should be getting updates from the right agent
 $event = new WebUpdateEvent($_POST);
 
-if (!$event->ValidateSignature($config["deploy"]["secret"]))
-{
-  die('Invalid signature');
-}
+$event->ValidateSignature($config["deploy"]["secret"]);
 
 // Update the repo, discarding changes
+print "Updating the repo from '" . $config["deploy"]["path"] . "'..." . PHP_EOL;
+print "<br>";
 chdir($config["deploy"]["path"]);
 
-exec("git reset --hard");
-exec("git clean -f");
-exec("git pull origin master");
+echo exec("git reset --hard");
+print "<br>";
+echo exec("git clean -f");
+print "<br>";
+echo exec("git pull origin master");
+print "<br>";
 
 ?>

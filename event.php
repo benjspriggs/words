@@ -29,9 +29,13 @@ class WebUpdateEvent {
     return $this->$body;
   }
 
-  function ValidateSignature($app_secret){
+  function IsValid($app_secret){
     return hash_equals($signature, hash_hmac("sha1", $body, $app_secret));
   }
-}
 
+  function ValidateSignature($app_secret){
+    if (!$this->IsValid($app_secret))
+      die("Invalid signature");
+  }
+}
 ?>
