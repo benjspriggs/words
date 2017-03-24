@@ -8,32 +8,25 @@ require "./event.php";
 // We should be getting updates from the right agent
 $event = new WebUpdateEvent($_POST);
 
-// $event->ValidateSignature($config["deploy"]["secret"]);
+$event->ValidateSignature($config["deploy"]["secret"]);
+
+require "./lib/git-php/Git.php";
 
 // Update the repo, discarding changes
-print "Updating the repo from '" . $config["deploy"]["path"] . "'..." . PHP_EOL;
+print "Updating the repo from '" . $config["deploy"]["path"] . "'...";
 print "<br>";
 chdir($config["deploy"]["path"]);
 
-function exec_print($cmd){
-  exec($cmd . " 2>&1", $output);
-  return $output;
+$repo = Git::open(".");
+
+function format_git($repo, $cmd){
+  print "<pre>" . htmlspecialchars($repo->run($cmd)) . "</pre>";
 }
 
-function pexec($cmd){
-  $o = exec_print($cmd);
-  print "<pre>\n";
-  print "'" . $cmd . "':<br>\n";
-  foreach(exec_print($cmd) as $line)
-  {
-    print "\t" . $line;
-  }
-  print "</pre>\n";
-}
+format_git($repo, "status");
+format_git($repo, "pull origin master");
+format_git($repo, "reset --hard");
+format_git($repo, "clean -f");
 
-pexec("touch testfile");
-pexec("git reset --hard");
-pexec("git clean -f");
-pexec("git pull origin master");
 
 ?>
