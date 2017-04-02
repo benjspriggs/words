@@ -1,6 +1,23 @@
 <?php
 
-chdir("..");
+chdir(".."); // change to root of the repo
+
+function format_exec($cmd){
+  $res = exec($cmd, $output, $retvar);
+  print "<pre>"
+    . "Result of command '" . $cmd . "': " 
+    . $retvar . PHP_EOL;
+  foreach ($output as $index => $line){
+    print $index 
+      . "\t". $line . ""
+      . PHP_EOL;
+  }
+  print "</pre>";
+}
+
+format_exec('./hello.sh');
+format_exec('git status');
+exit;
 
 require "./config.php";
 require "./event.php";
