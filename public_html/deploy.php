@@ -1,1 +1,1 @@
-../deploy.php
+../gh-deploy/deploy.php
