@@ -1,3 +1,6 @@
 [submodule "lib/spyc"]
 	path = lib/spyc
 	url = https://github.com/mustangostang/spyc.git
+[submodule "gh-deploy"]
+	path = gh-deploy
+	url = https://github.com/markomarkovic/simple-php-git-deploy.git
