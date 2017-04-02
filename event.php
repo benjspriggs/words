@@ -7,30 +7,30 @@ class WebUpdateEvent {
 
   // construct from $_POST
   function __construct($post){
-    $event = htmlspecialchars($post["X-GitHub-Event"]);
-    $signature = htmlspecialchars($post["X-Hub-Signature"]);
-    $delivery = htmlspecialchars($post["X-GitHub-Delivery"]);
-    $body = htmlspecialchars(file_get_contents('php://input'));
+    $this->event = htmlspecialchars($post["X-GitHub-Event"]);
+    $this->signature = htmlspecialchars($post["X-Hub-Signature"]);
+    $this->delivery = htmlspecialchars($post["X-GitHub-Delivery"]);
+    $this->body = htmlspecialchars(file_get_contents('php://input'));
   }
 
   function Event(){
-    return $this->$event;
+    return $this->event;
   }
 
   function Signature(){
-    return $this->$signature;
+    return $this->signature;
   }
 
   function Delivery(){
-    return $this->$signature;
+    return $this->signature;
   }
 
   function Body(){
-    return $this->$body;
+    return $this->body;
   }
 
   function IsValid($app_secret){
-    return hash_equals($signature, hash_hmac("sha1", $body, $app_secret));
+    return hash_equals($this->signature, hash_hmac("sha1", $this->body, $app_secret));
   }
 
   function ValidateSignature($app_secret){
