@@ -39,8 +39,8 @@ function get(&$value, $default = null){
 
 function map_to_configs($config_mapping, $deploy_config, $required = false){
   foreach($config_mapping as $config_val => $yaml_key){
-    if ($required){
-      assert(array_key_exists($yaml_key, $deploy_config));
+    if ($required && !array_key_exists($yaml_key, $deploy_config)){
+      die("Missing required key '$yaml_key' in deploy configuration.");
     }
     define($config_val, get($deploy_config[$yaml_key], false));
   }
