@@ -31,7 +31,7 @@ require_once "event.php";
 $event = new WebUpdateEvent($_POST);
 
 // If there's authorization error, set the correct HTTP header.
-if (!$event->IsValid()){
+if (!$event->IsValid(SECRET_ACCESS_TOKEN)){
   header($_SERVER['SERVER_PROTOCOL'] . ' 403 Forbidden', true, 403);
 }
 
@@ -53,7 +53,7 @@ h2, .error { color: #c33; }
 </head>
 <body>
 <?php
-$event->ValidateSignature();
+$event->ValidateSignature(SECRET_ACCESS_TOKEN);
 ?>
 <pre>
 
