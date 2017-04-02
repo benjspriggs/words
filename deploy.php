@@ -234,8 +234,8 @@ Cleaning up temporary files ...
 <span class="prompt">$</span> <span class="command">%s</span>
 <div class="output">%s</div>
 '
-        , htmlentities(trim($commands['cleanup']))
-        , htmlentities(trim($tmp))
+  , htmlentities(trim($commands['cleanup']))
+  , htmlentities(trim($tmp))
       );
     }
     $error = sprintf(
