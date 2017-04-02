@@ -28,12 +28,16 @@ $config_map = array(
   )
 );
 
+function get(&$value, $default = null){
+  return isset($value) ? $value : null;
+}
+
 function map_to_configs($config_mapping, $required = false){
   foreach($config_mapping as $config_val => $yaml_key){
     if ($required){
       assert(array_key_exists($yaml_key, $deploy_config));
     }
-    define($config_val, $deploy_config[$yaml_key]);
+    define($config_val, get($deploy_config[$yaml_key], false));
   }
 }
 
