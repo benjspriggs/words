@@ -10,7 +10,7 @@ function format_exec($cmd){
     . $retvar . PHP_EOL;
   foreach ($output as $index => $line){
     print $index 
-      . "\t". $line . ""
+      . "\t". $line
       . PHP_EOL;
   }
   print "</pre>";
