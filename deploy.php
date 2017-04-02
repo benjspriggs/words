@@ -4,7 +4,7 @@
  *
  * Automatically deploy the code using PHP and Git.
  *
- * @version 1.3.1
+ * @version 1.3.2
  * @link    https://github.com/markomarkovic/simple-php-git-deploy/
  */
 
@@ -42,7 +42,7 @@ ob_start();
 <head>
   <meta charset="utf-8">
   <meta name="robots" content="noindex">
-  <title>Simple PHP Git deploy script</title>
+  <title>Deploy from Git</title>
   <style>
 body { padding: 0 1em; background: #222; color: #fff; }
 h2, .error { color: #c33; }
@@ -53,14 +53,7 @@ h2, .error { color: #c33; }
 </head>
 <body>
 <?php
-if (!isset($_GET['sat']) || $_GET['sat'] !== SECRET_ACCESS_TOKEN) {
-  header($_SERVER['SERVER_PROTOCOL'] . ' 403 Forbidden', true, 403);
-  die('<h2>ACCESS DENIED!</h2>');
-}
-if (SECRET_ACCESS_TOKEN === 'BetterChangeMeNowOrSufferTheConsequences') {
-  header($_SERVER['SERVER_PROTOCOL'] . ' 403 Forbidden', true, 403);
-  die("<h2>You're suffering the consequences!<br>Change the SECRET_ACCESS_TOKEN from it's default value!</h2>");
-}
+$event->ValidateSignature();
 ?>
 <pre>
 
