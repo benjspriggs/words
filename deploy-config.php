@@ -3,12 +3,12 @@
 require_once "./lib/spyc/Spyc.php";
 
 // Read settings from the config
-$config_filename = "./app.config.yml";
-$config = spyc_load_file($config_filename);
-$deploy_config = $config['deploy'];
+const $config_filename = "./app.config.yml";
+const $config = spyc_load_file($config_filename);
+const $deploy_config = $config['deploy'];
 
 // mapping of values to keys as they appear in the YAML file
-$config_map = array(
+const $config_map = array(
   "required" => array(
     "SECRET_ACCESS_TOKEN" => "secret",
     "REMOTE_REPOSITORY" => "remote_url",
@@ -33,6 +33,7 @@ function get(&$value, $default = null){
 }
 
 function map_to_configs($config_mapping, $required = false){
+  global $deploy_config; // TODO: Wrap into a class to avoid using global
   foreach($config_mapping as $config_val => $yaml_key){
     if ($required){
       assert(array_key_exists($yaml_key, $deploy_config));
