@@ -55,6 +55,8 @@ function setup_deploy_config($filename)
   map_to_configs(CONFIG_MAP["optional"], $deploy_config, false);
 }
 
+// setup the deploy config
+setup_deploy_config(CONFIG_FILENAME);
 
 // DOCUMENTATION BEGIN
 /** SECRET_ACCESS_TOKEN
