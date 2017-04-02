@@ -5,7 +5,7 @@ require "./config.php";
 require "./event.php";
 
 function format_exec($cmd){
-  $res = exec("su $(stat -c '%U') -c '$cmd' 2>&1", $output, $retvar);
+  $res = exec("$cmd 2>&1", $output, $retvar);
   print "<pre>"
     . "Result of command '" . $cmd . "': " 
     . $retvar . PHP_EOL;
