@@ -1,6 +1,5 @@
 <?php
 
-chdir(".."); // change to root of the repo
 require "./config.php";
 require "./event.php";
 
