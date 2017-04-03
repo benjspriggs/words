@@ -4,6 +4,7 @@ class WebUpdateEvent {
   var $signature;
   var $delivery;
   var $body;
+  var $algo;
 
   // construct from $_POST
   function __construct($post){
@@ -11,6 +12,11 @@ class WebUpdateEvent {
     $this->signature = htmlspecialchars($post["X-Hub-Signature"]);
     $this->delivery = htmlspecialchars($post["X-GitHub-Delivery"]);
     $this->body = htmlspecialchars(file_get_contents('php://input'));
+    list($this->algo, $this->signature) = 
+      explode('=', $this->signature, 2) + array('', '');
+    if (!in_array($this->algo, hash_algos(), true)){
+      throw new Exception("Hashing algorithm unexpected - ". $this->algo);
+    }
   }
 
   function Event(){
@@ -30,7 +36,7 @@ class WebUpdateEvent {
   }
 
   function IsValid($app_secret){
-    return hash_equals($this->signature, hash_hmac("sha1", $this->body, $app_secret));
+    return hash_equals($this->signature, hash_hmac($this->algo, $this->body, $app_secret));
   }
 
   function ValidateSignature($app_secret){
