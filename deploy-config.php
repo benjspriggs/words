@@ -34,7 +34,12 @@ function read_config($filename)
 
 // attempt to get a value, fill with a default
 function get(&$value, $default = null){
-  return isset($value) ? $value : $default;
+  if (isset($value))
+  {
+    return is_array($value) ? serialize($value) : serialize($default);
+  }
+  else
+    return $default;
 }
 
 function map_to_configs($config_mapping, $deploy_config, $required = false){
