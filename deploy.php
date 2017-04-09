@@ -28,7 +28,7 @@ if (file_exists(basename(__FILE__, '.php').'-config.php')) {
 
 require_once "event.php";
 
-$event = new WebUpdateEvent($_POST);
+$event = new WebUpdateEvent(getallheaders(), $_POST);
 
 // If there's authorization error, set the correct HTTP header.
 if (!$event->IsValid(SECRET_ACCESS_TOKEN)){

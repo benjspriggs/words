@@ -1,2 +1,3 @@
 Options -Indexes
-Redirect / public_html/
+RewriteEngine On
+RewriteRule ^$ /public_html/ [L]
