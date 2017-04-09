@@ -28,14 +28,15 @@ if (file_exists(basename(__FILE__, '.php').'-config.php')) {
 
 require_once "event.php";
 
-$event = new WebUpdateEvent($_POST);
+ob_start();
+
+$event = new WebUpdateEvent(getallheaders(), file_get_contents('php://input'));
 
 // If there's authorization error, set the correct HTTP header.
 if (!$event->IsValid(SECRET_ACCESS_TOKEN)){
   header($_SERVER['SERVER_PROTOCOL'] . ' 403 Forbidden', true, 403);
 }
 
-ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

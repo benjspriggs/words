@@ -6,12 +6,11 @@ class WebUpdateEvent {
   var $body;
   var $algo;
 
-  // construct from $_POST
-  function __construct($post){
-    $this->event = htmlspecialchars($post["X-GitHub-Event"]);
-    $this->signature = htmlspecialchars($post["X-Hub-Signature"]);
-    $this->delivery = htmlspecialchars($post["X-GitHub-Delivery"]);
-    $this->body = htmlspecialchars(file_get_contents('php://input'));
+  function __construct($headers, $body){
+    $this->event = htmlspecialchars($headers["X-GitHub-Event"]);
+    $this->signature = htmlspecialchars($headers["X-Hub-Signature"]);
+    $this->delivery = htmlspecialchars($headers["X-GitHub-Delivery"]);
+    $this->body = $body;
     list($this->algo, $this->signature) = 
       explode('=', $this->signature, 2) + array('', '');
     if (!in_array($this->algo, hash_algos(), true)){
