@@ -11,7 +11,7 @@ class WebUpdateEvent {
     $this->event = htmlspecialchars($headers["X-GitHub-Event"]);
     $this->signature = htmlspecialchars($headers["X-Hub-Signature"]);
     $this->delivery = htmlspecialchars($headers["X-GitHub-Delivery"]);
-    $this->body = array_map("htmlspecialchars", $post);
+    $this->body = $post["payload"];
     list($this->algo, $this->signature) = 
       explode('=', $this->signature, 2) + array('', '');
     if (!in_array($this->algo, hash_algos(), true)){
