@@ -11,8 +11,7 @@ class WebUpdateEvent {
     $this->signature = htmlspecialchars($headers["X-Hub-Signature"]);
     $this->delivery = htmlspecialchars($headers["X-GitHub-Delivery"]);
     $this->body = $body;
-    list($this->algo, $this->signature) = 
-      explode('=', $this->signature, 2) + array('', '');
+    list($this->algo, $this->signature) = explode('=', $this->signature, 2);
     if (!in_array($this->algo, hash_algos(), true)){
       throw new Exception("Hashing algorithm unexpected - ". $this->algo);
     }
@@ -27,7 +26,7 @@ class WebUpdateEvent {
   }
 
   function Delivery(){
-    return $this->signature;
+    return $this->delivery;
   }
 
   function Body(){
