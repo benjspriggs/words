@@ -36,7 +36,7 @@ function read_config($filename)
 function get(&$value, $default = null){
   if (isset($value))
   {
-    return is_array($value) ? serialize($value) : serialize($default);
+    return is_array($value) ? serialize($value) : $value;
   }
   else
     return $default;
