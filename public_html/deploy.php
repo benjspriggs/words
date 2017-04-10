@@ -1,1 +1,2 @@
-../gh-deploy/deploy.php
+<?
+require_once '../deploy.php';
