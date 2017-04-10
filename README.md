@@ -12,10 +12,10 @@ deploy:
 ```
 etc.
 
-## Required Values
+## Required Keys
 
 | key name            | type   | description                                                              |
-|---------------------+--------+--------------------------------------------------------------------------|
+|---------------------|--------|--------------------------------------------------------------------------|
 | secret              | string | Secret key.                                                              |
 | remote_url          | string | Github repo https URL.                                                   |
 | branch              | string | Branch in the Github repo to be cloned.                                  |
@@ -24,12 +24,12 @@ etc.
 | cleanup_after_stage | bool   | Whether or not to delete the staging directory after each staging.       |
 | timeout             | int    | Timeout, in seconds, of each command.                                    |
 
-## Optional Values
+## Optional Keys
 
 All values will default to `false` if not provided:
 
 | key name      | type   | description                                               |
-|---------------+--------+-----------------------------------------------------------|
+|---------------|--------|-----------------------------------------------------------|
 | backup        | string | Location to where files will be copied to before staging. |
 | composer      | bool   | Whether or not to use Composer.                           |
 | composer_home | string | Location of Composer on the destination server.           |
