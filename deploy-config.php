@@ -11,16 +11,16 @@ const CONFIG_MAP = array(
     "REMOTE_REPOSITORY" => "remote_url",
     "BRANCH" => "branch",
     "TARGET_DIR" => "path",
-    "DELETE_FILES" => "make-clean",
+    "DELETE_FILES" => "make_clean",
     "EXCLUDE" => "exclude",
     "TMP_DIR" => "staging",
-    "CLEAN_UP" => "cleanup-after-stage",
+    "CLEAN_UP" => "cleanup_after_stage",
     "TIME_LIMIT" => "timeout",
   ),
   "optional" => array(
     "BACKUP_DIR" => "backup",
     "USE_COMPOSER" => "composer",
-    "COMPOSER_HOME" => "composer-home",
+    "COMPOSER_HOME" => "composer_home",
     "EMAIL_ON_ERROR" => "email",
   )
 );
