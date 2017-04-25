@@ -1,0 +1,1 @@
+-- Initializes an existing database with production data - two users, admin and guest, neither of which have passwords set.
